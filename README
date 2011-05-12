@@ -4,6 +4,18 @@ NAME
 VERSION
     version 0.001
 
+SYNOPSIS
+        use Moose;
+        use MooseX::Types::XML::LibXML ':all';
+
+        has xml_doc    => ( isa => Document );
+        has namespaces => ( isa => XMLNamespaceMap );
+        has xpath      => ( isa => XPathExpression );
+
+DESCRIPTION
+    This is a Moose type library for some common types used with and by
+    XML::LibXML.
+
 TYPES
   Document
     XML::LibXML::Document that coerces strings, Path::Class::Files and URIs.
@@ -14,6 +26,10 @@ TYPES
 
   XPathExpression
     XML::LibXML::XPathExpression that coerces strings.
+
+SEE ALSO
+    <XML::LibXML|XML::LibXML>
+    <Moose::Manual::Types|Moose::Manual::Types>
 
 SUPPORT
   Perldoc

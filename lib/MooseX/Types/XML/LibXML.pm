@@ -54,8 +54,6 @@ coerce XPathExpression,        ## no critic (ProhibitCallsToUndeclaredSubs)
 
 1;
 
-__END__
-
 =pod
 
 =for :stopwords Mark Gardner GSI Commerce cpan testmatrix url annocpan anno bugtracker rt
@@ -70,6 +68,20 @@ MooseX::Types::XML::LibXML - Type constraints for LibXML classes
 =head1 VERSION
 
 version 0.001
+
+=head1 SYNOPSIS
+
+    use Moose;
+    use MooseX::Types::XML::LibXML ':all';
+
+    has xml_doc    => ( isa => Document );
+    has namespaces => ( isa => XMLNamespaceMap );
+    has xpath      => ( isa => XPathExpression );
+
+=head1 DESCRIPTION
+
+This is a L<Moose|Moose> type library for some common types used with and by
+L<XML::LibXML|XML::LibXML>.
 
 =head1 TYPES
 
@@ -87,6 +99,16 @@ Coerces from a reference to a hash of strings.
 
 L<XML::LibXML::XPathExpression|XML::LibXML::XPathExpression> that coerces
 strings.
+
+=head1 SEE ALSO
+
+=over
+
+=item <XML::LibXML|XML::LibXML>
+
+=item <Moose::Manual::Types|Moose::Manual::Types>
+
+=back
 
 =head1 SUPPORT
 
@@ -205,3 +227,5 @@ This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
 
 =cut
+
+__END__
