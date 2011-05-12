@@ -28,8 +28,8 @@ TYPES
     XML::LibXML::XPathExpression that coerces strings.
 
 SEE ALSO
-    <XML::LibXML|XML::LibXML>
-    <Moose::Manual::Types|Moose::Manual::Types>
+    XML::LibXML
+    Moose::Manual::Types
 
 SUPPORT
   Perldoc

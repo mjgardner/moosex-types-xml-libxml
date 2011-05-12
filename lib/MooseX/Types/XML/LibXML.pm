@@ -104,9 +104,9 @@ strings.
 
 =over
 
-=item <XML::LibXML|XML::LibXML>
+=item L<XML::LibXML|XML::LibXML>
 
-=item <Moose::Manual::Types|Moose::Manual::Types>
+=item L<Moose::Manual::Types|Moose::Manual::Types>
 
 =back
 
