@@ -34,7 +34,8 @@ coerce Document,        ## no critic (ProhibitCallsToUndeclaredSubs)
     from Str, via { XML::LibXML->load_xml( string => $ARG ) };
 
 coerce Document,        ## no critic (ProhibitCallsToUndeclaredSubs)
-    from 'File | Uri', via { XML::LibXML->load_xml( location => $ARG ) };
+    from 'Path::Class::File | Uri',
+    via { XML::LibXML->load_xml( location => $ARG ) };
 
 subtype XMLNamespaceMap,    ## no critic (ProhibitCallsToUndeclaredSubs)
     as HashRef [Uri];
