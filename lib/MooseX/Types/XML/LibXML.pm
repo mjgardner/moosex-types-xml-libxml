@@ -23,7 +23,6 @@ use MooseX::Types -declare => [qw(Document XMLNamespaceMap XPathExpression)];
 use MooseX::Types::Moose qw(HashRef Str);
 use MooseX::Types::Path::Class 'File';
 use MooseX::Types::URI 'Uri';
-use Path::Class;
 use URI;
 use XML::LibXML;
 use namespace::autoclean;
@@ -76,7 +75,7 @@ version 0.001
 
 =head2 Document
 
-L<XML::LibXML::Document> that coerces strings,
+L<XML::LibXML::Document|XML::LibXML::Document> that coerces strings,
 L<Path::Class::File|Path::Class::File>s and L<URI|URI>s.
 
 =head2 XMLNamespaceMap
@@ -86,7 +85,8 @@ Coerces from a reference to a hash of strings.
 
 =head2 XPathExpression
 
-L<XML::LibXML::XPathExpression> that coerces strings.
+L<XML::LibXML::XPathExpression|XML::LibXML::XPathExpression> that coerces
+strings.
 
 =head1 SUPPORT
 
