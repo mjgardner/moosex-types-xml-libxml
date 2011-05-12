@@ -23,6 +23,7 @@ use MooseX::Types -declare => [qw(Document XMLNamespaceMap XPathExpression)];
 use MooseX::Types::Moose qw(HashRef Str);
 use MooseX::Types::Path::Class 'File';
 use MooseX::Types::URI 'Uri';
+use Path::Class;
 use URI;
 use XML::LibXML;
 use namespace::autoclean;
@@ -34,7 +35,7 @@ coerce Document,        ## no critic (ProhibitCallsToUndeclaredSubs)
     from Str, via { XML::LibXML->load_xml( string => $ARG ) };
 
 coerce Document,        ## no critic (ProhibitCallsToUndeclaredSubs)
-    from 'Path::Class::File | Uri',
+    from 'Path::Class::File | URI',
     via { XML::LibXML->load_xml( location => $ARG ) };
 
 subtype XMLNamespaceMap,    ## no critic (ProhibitCallsToUndeclaredSubs)
