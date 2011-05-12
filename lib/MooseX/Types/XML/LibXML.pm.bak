@@ -1,0 +1,40 @@
+package MooseX::Types::XML::LibXML;
+
+# ABSTRACT: Type constraints for LibXML classes
+
+use strict;
+use English '-no_match_vars';
+use MooseX::Types -declare => [qw(Document XMLNamespaceMap XPathExpression)];
+use MooseX::Types::Moose qw(HashRef Str);
+use MooseX::Types::Path::Class 'File';
+use MooseX::Types::URI 'Uri';
+use URI;
+use XML::LibXML;
+use namespace::autoclean;
+
+class_type Document,    ## no critic (ProhibitCallsToUndeclaredSubs)
+  { class => 'XML::LibXML::Document' };
+
+coerce Document,        ## no critic (ProhibitCallsToUndeclaredSubs)
+  from Str, via { XML::LibXML->load_xml( string => $ARG ) };
+
+coerce Document,        ## no critic (ProhibitCallsToUndeclaredSubs)
+  from 'File | Uri', via { XML::LibXML->load_xml( location => $ARG ) };
+
+subtype XMLNamespaceMap,    ## no critic (ProhibitCallsToUndeclaredSubs)
+  as HashRef [Uri];
+
+coerce XMLNamespaceMap,     ## no critic (ProhibitCallsToUndeclaredSubs)
+  from HashRef [Str], via {
+    ## no critic (ProhibitAccessOfPrivateData)
+    my $hashref = $ARG;
+    return { map { $ARG => URI->new( $hashref->{$ARG} ) } keys %{$hashref} };
+  };
+
+class_type XPathExpression,    ## no critic (ProhibitCallsToUndeclaredSubs)
+  { class => 'XML::LibXML::XPathExpression' };
+
+coerce XPathExpression,        ## no critic (ProhibitCallsToUndeclaredSubs)
+  from Str, via { XML::LibXML::XPathExpression->new($ARG) };
+
+1;
