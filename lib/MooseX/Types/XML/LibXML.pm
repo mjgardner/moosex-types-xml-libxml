@@ -135,14 +135,6 @@ L<http://search.cpan.org/dist/MooseX-Types-XML-LibXML>
 
 =item *
 
-RT: CPAN's Bug Tracker
-
-The RT ( Request Tracker ) website is the default bug/issue tracking system for CPAN.
-
-L<http://rt.cpan.org/NoAuth/Bugs.html?Dist=MooseX-Types-XML-LibXML>
-
-=item *
-
 AnnoCPAN
 
 The AnnoCPAN is a website that allows community annonations of Perl module documentation.
@@ -156,14 +148,6 @@ CPAN Ratings
 The CPAN Ratings is a website that allows community ratings and reviews of Perl modules.
 
 L<http://cpanratings.perl.org/d/MooseX-Types-XML-LibXML>
-
-=item *
-
-CPAN Forum
-
-The CPAN Forum is a web forum for discussing Perl modules.
-
-L<http://cpanforum.com/dist/MooseX-Types-XML-LibXML>
 
 =item *
 
