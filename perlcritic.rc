@@ -18,7 +18,7 @@ above_version = 5.010
 flowcontrol = carp cluck confess croak die exit goto warn exit pod2usage
 
 [Documentation::PodSpelling]
-stop_words = bugtracker LibXML URIs XMLNamespaceMap namespace XPathExpression Perldoc perldoc CPAN's
+stop_words = bugtracker LibXML URIs XMLNamespaceMap namespace XPathExpression Perldoc perldoc CPAN's annonations PASSed
 
 [Documentation::RequirePodSections]
 lib_sections = NAME | VERSION | SYNOPSIS | DESCRIPTION | SUPPORT | AUTHOR | COPYRIGHT AND LICENSE
