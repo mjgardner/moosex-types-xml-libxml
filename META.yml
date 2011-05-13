@@ -32,5 +32,6 @@ requires:
   utf8: 0
 resources:
   bugtracker: https://github.com/mjgardner/moosex-types-xml-libxml/issues
+  homepage: http://search.cpan.org/dist/MooseX-Types-XML-LibXML/
   repository: git://github.com/mjgardner/moosex-types-xml-libxml.git
-version: 0.001
+version: 0.002
