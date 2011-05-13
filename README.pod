@@ -11,16 +11,38 @@ MooseX::Types::XML::LibXML - Type constraints for LibXML classes
 
 =head1 VERSION
 
-version 0.001
+version 0.002
 
 =head1 SYNOPSIS
 
+    package MyParser;
     use Moose;
     use MooseX::Types::XML::LibXML ':all';
+    use XML::LibXML::XPathContext;
 
-    has xml_doc    => ( isa => Document );
-    has namespaces => ( isa => XMLNamespaceMap );
-    has xpath      => ( isa => XPathExpression );
+    has xml_doc    => ( isa => Document, coerce => 1 );
+    has namespaces => ( isa => XMLNamespaceMap, coerce => 1 );
+    has xpath      => ( isa => XPathExpression, coerce => 1 );
+
+    sub findnodes {
+        my $self = shift;
+        my $xpc  = XML::LibXML::XPathContext->new($self->xml_doc);
+        while ( my ($prefix, $uri) = each %{$self->namespaces} ) {
+            $xpc->registerNs($prefix, "$uri");
+        }
+        return $xpc->findnodes($self->xpath);
+    }
+
+    package main;
+    use Path::Class;
+
+    my $para_parser = MyParser->new(
+        xml_doc    => file('foo.xhtml'),
+        namespaces => { xhtml => 'http://www.w3.org/1999/xhtml' },
+        xpath      => '//xhtml:p',
+    );
+
+    print $para_parser->findnodes->to_literal, "\n";
 
 =head1 DESCRIPTION
 
