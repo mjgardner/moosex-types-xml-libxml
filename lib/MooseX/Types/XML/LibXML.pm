@@ -2,7 +2,27 @@ package MooseX::Types::XML::LibXML;
 
 # ABSTRACT: Type constraints for LibXML classes
 
-use strict;
+=head1 DESCRIPTION
+
+This is a L<Moose|Moose> type library for some common types used with and by
+L<XML::LibXML|XML::LibXML>.
+
+=head1 SEE ALSO
+
+=over
+
+=item L<XML::LibXML|XML::LibXML>
+
+=item L<Moose::Manual::Types|Moose::Manual::Types>
+
+=back
+
+=cut
+
+use utf8;
+use Modern::Perl;
+
+# VERSION
 use English '-no_match_vars';
 use MooseX::Types -declare => [qw(Document XMLNamespaceMap XPathExpression)];
 use MooseX::Types::Moose qw(HashRef Str);
@@ -91,18 +111,3 @@ __END__
     );
 
     print $para_parser->findnodes->to_literal, "\n";
-
-=head1 DESCRIPTION
-
-This is a L<Moose|Moose> type library for some common types used with and by
-L<XML::LibXML|XML::LibXML>.
-
-=head1 SEE ALSO
-
-=over
-
-=item L<XML::LibXML|XML::LibXML>
-
-=item L<Moose::Manual::Types|Moose::Manual::Types>
-
-=back
