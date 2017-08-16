@@ -32,6 +32,8 @@ use URI;
 use XML::LibXML;
 use namespace::autoclean;
 
+## no critic (Subroutines::ProhibitCallsToUndeclaredSubs)
+
 =type Document
 
 L<XML::LibXML::Document|XML::LibXML::Document> that coerces strings,
@@ -39,14 +41,10 @@ L<Path::Class::File|Path::Class::File>s and L<URI|URI>s.
 
 =cut
 
-class_type Document,    ## no critic (ProhibitCallsToUndeclaredSubs)
-    { class => 'XML::LibXML::Document' };
-
-coerce Document,        ## no critic (ProhibitCallsToUndeclaredSubs)
-    from Str, via { XML::LibXML->load_xml( string => $ARG ) };
-
-coerce Document,        ## no critic (ProhibitCallsToUndeclaredSubs)
-    from File | Uri, via { XML::LibXML->load_xml( location => $ARG ) };
+class_type Document, { class => 'XML::LibXML::Document' };
+coerce Document, from Str, via { XML::LibXML->load_xml( string => $_ ) };
+coerce Document, from File | Uri,    ## no critic (ProhibitBitwiseOperators)
+    via { XML::LibXML->load_xml( location => $_ ) };
 
 =type XMLNamespaceMap
 
@@ -55,15 +53,12 @@ Coerces from a reference to a hash of strings.
 
 =cut
 
-subtype XMLNamespaceMap,    ## no critic (ProhibitCallsToUndeclaredSubs)
-    as HashRef [Uri];
-
-coerce XMLNamespaceMap,     ## no critic (ProhibitCallsToUndeclaredSubs)
-    from HashRef [Str], via {
+subtype XMLNamespaceMap, as HashRef [Uri];
+coerce XMLNamespaceMap, from HashRef [Str], via {
     ## no critic (ProhibitAccessOfPrivateData)
-    my $hashref = $ARG;
-    return { map { $ARG => URI->new( $hashref->{$ARG} ) } keys %{$hashref} };
-    };
+    my $hashref = $_;
+    return { map { $_ => URI->new( $hashref->{$_} ) } keys %{$hashref} };
+};
 
 =type XPathExpression
 
@@ -72,11 +67,9 @@ strings.
 
 =cut
 
-class_type XPathExpression,    ## no critic (ProhibitCallsToUndeclaredSubs)
-    { class => 'XML::LibXML::XPathExpression' };
-
-coerce XPathExpression,        ## no critic (ProhibitCallsToUndeclaredSubs)
-    from Str, via { XML::LibXML::XPathExpression->new($ARG) };
+class_type XPathExpression, { class => 'XML::LibXML::XPathExpression' };
+coerce XPathExpression, from Str,
+    via { XML::LibXML::XPathExpression->new($_) };
 
 1;
 __END__
