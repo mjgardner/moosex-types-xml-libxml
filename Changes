@@ -2,6 +2,7 @@
     - No functional or documentation changes
     - Fixed POD encoding
     - Fixed distribution metadata
+    - remove link to AnnoCPAN from docs
 0.002     2011-05-13 10:42:14 America/New_York
     - More complete synopsis in documentation
 0.001     2011-05-12 17:36:35 America/New_York
